@@ -1,15 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../css/tranfer.css" th:href="@{/css/tranfer.css}">
+    <title>Transfer Page</title>
 </head>
 <body>
 <header>
     <div th:replace="~{/navbar::topbar}"></div>
 </header>
 
+<ul id="page">
+    <li><h2>Home / Transfert</h2></li>
+</ul>
 
+<div class="centered"><h1 id="sendmoney">Send money</h1><form action="add" method="get"><button type="submit" id="addconnection" >Add Connection</button></form></div>
+<form id="bckggray" class="row" action="transfert.html" method="post">
+    <div class="columns">
+        <div class="column">
+            <select class="paiement" name="friendid">
+                <option th:each="friend : ${friendsaccounts}">
+                    <div th:text="${friend.getUser().getFirstName()}"></div>
+                    <div th:text="${friend.getUser().getLastName()}"></div>
+                </option>
+            </select>
+        </div>
+        <div class="column">
+            <input class="paiement" type="number" name="amount">euros
+        </div>
+        <div class="column">
+            <button class="paiement" id="btpay" type="submit" >Pay</button>
+        </div>
+    </div>
+</form>
+<div class="centered">
+    <table id="table_id">
+        <thead>
+        <h1>My transactions</h1>
+        </thead>
+
+        <tr>
+            <th>Connections</th>
+            <th>Desciption</th>
+            <th>Amount</th>
+        </tr>
+        <tr th:each="transaction : ${transactionList}" >
+            <td th:text="${transaction.getAccount_receiver().getUser().getFirstName()}" > nom </td>
+            <td th:text="${transaction.getDescription()}" > descriiption </td>
+            <td th:text="${transaction.getAmount()}" > amount </td>
+        </tr>
+    </table>
+</div>
 
 </body>
 </html>

@@ -20,9 +20,21 @@ public class Account {
     @Column(name="balance")
     private double balance;
 
-    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "account_giver", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    private List<Transaction> transactions;
+    private List<Transaction> transactions1;
+
+    @OneToMany(mappedBy = "account_receiver", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<Transaction> transactions2;
+
+    public List<Transaction> getTransactions2() {
+        return transactions2;
+    }
+
+    public void setTransactions2(List<Transaction> transactions2) {
+        this.transactions2 = transactions2;
+    }
 
     public int getId() {
         return id;
@@ -48,11 +60,11 @@ public class Account {
         this.balance = balance;
     }
 
-    public List<Transaction> getTransactions() {
-        return transactions;
+    public List<Transaction> getTransactions1() {
+        return transactions1;
     }
 
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
+    public void setTransactions1(List<Transaction> transactions) {
+        this.transactions1 = transactions;
     }
 }

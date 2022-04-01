@@ -11,21 +11,30 @@ public class Transaction {
     @Column(name="id")
     private int id;
 
-    @Column(name="id_receiver")
-    private int id_receiver;
-
-    @Column(name="id_giver")
-    private int id_giver;
-
     @Column(name="amount")
     private double amount;
 
     @Column(name="description")
     private String description;
 
+    @Column(name="date")
+    private String date;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "account_id", nullable = false)
-    private Account account;
+    @JoinColumn(name = "id_receiver", nullable = false)
+    private Account account_receiver;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_giver", nullable = false)
+    private Account account_giver;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public int getId() {
         return id;
@@ -35,20 +44,12 @@ public class Transaction {
         this.id = id;
     }
 
-    public int getId_receiver() {
-        return id_receiver;
+    public Account getAccount_receiver() {
+        return account_receiver;
     }
 
-    public void setId_receiver(int id_receiver) {
-        this.id_receiver = id_receiver;
-    }
-
-    public int getId_giver() {
-        return id_giver;
-    }
-
-    public void setId_giver(int id_giver) {
-        this.id_giver = id_giver;
+    public void setAccount_receiver(Account account_receiver) {
+        this.account_receiver = account_receiver;
     }
 
     public double getAmount() {
@@ -67,11 +68,11 @@ public class Transaction {
         this.description = description;
     }
 
-    public Account getAccount() {
-        return account;
+    public Account getAccount_giver() {
+        return account_giver;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setAccount_giver(Account account) {
+        this.account_giver = account;
     }
 }
