@@ -2,15 +2,15 @@ package com.openclassrooms.PayMyBuddy.model;
 
 import javax.persistence.*;
 
-
+@Entity
 @Table(name = "friendlist")
 public class Friend {
-/*
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_giver")
-    private int id_giver;
-
+    @Column(name="id")
+    private int id;
+/*
     @MapsId
     @JoinColumn(name = "id_receiver")
     private int id_receiver;*/

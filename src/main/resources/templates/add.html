@@ -6,8 +6,12 @@
     <title>Title</title>
 </head>
 <body>
+<header>
+    <div th:replace="~{/navbar::topbar}"></div>
+</header>
+<h1 th:text="${done}" ></h1>
     <form method="post"action="add">
-        <input type="text" placeholder="Email">
+        <input type="text" name="email" placeholder="Email">
         <input type="submit" >
     </form>
 </body>

@@ -28,7 +28,7 @@ public class AddController {
     }
 
     @PostMapping("/add")
-    public String addFriend(Principal user , @ModelAttribute("newFriend")String email, Model model){
+    public String addFriend(Principal user , @ModelAttribute("email")String email, Model model){
         this.user = userService.getUsertByEmail(user.getName()).get();
         Friend friend = new Friend();
         friend.setAccount_giver(this.user.getAccount());

@@ -42,7 +42,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.loginProcessingUrl("/perform_login")
                 .and()
                 .logout();
-
+       http.csrf().disable();
     }
 
     @Bean
