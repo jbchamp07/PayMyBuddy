@@ -24,7 +24,7 @@ public class LoginController {
     public String index(Principal user, Model model){
         this.user = userService.getUsertByEmail(user.getName()).get();
         model.addAttribute("user",this.user);
-        return "index";
+        return "transfer";
     }
 
     @GetMapping("/login")

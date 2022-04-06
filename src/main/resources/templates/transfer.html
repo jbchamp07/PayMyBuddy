@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../css/tranfer.css" th:href="@{/css/tranfer.css}">
+    <link rel="stylesheet" type="text/css" href="../css/transfer.css" th:href="@{/css/transfer.css}">
     <title>Transfer Page</title>
 </head>
 <body>
@@ -11,22 +11,25 @@
 </header>
 
 <ul id="page">
-    <li><h2>Home / Transfert</h2></li>
+    <li><h2 id="hometransfer">Home / Transfer</h2></li>
 </ul>
 
 <div class="centered"><h1 id="sendmoney">Send money</h1><form action="add" method="get"><button type="submit" id="addconnection" >Add Connection</button></form></div>
-<form id="bckggray" class="row" action="transfert.html" method="post">
+<form id="bckggray" class="row" action="transfer" method="post">
     <div class="columns">
         <div class="column">
             <select class="paiement" name="friendid">
-                <option th:each="friend : ${friendsaccounts}">
-                    <div th:text="${friend.getUser().getFirstName()}"></div>
-                    <div th:text="${friend.getUser().getLastName()}"></div>
+                <option value="" selected disabled hidden>Select A Connection</option>
+                <option th:each="friend : ${friendsaccounts}" th:value="${friend.getId()}">
+                    <div th:text="${friend.getUser().getFirstName()} + ' ' + ${friend.getUser().getLastName()}" th:value="${friend.getUser().getId()}"></div>
                 </option>
             </select>
         </div>
         <div class="column">
-            <input class="paiement" type="number" name="amount">euros
+            <input class="paiement" type="number" name="amount" placeholder="Amount">€
+        </div>
+        <div class="column">
+            <input class="paiement" type="text" placeholder="Desciption" name="description">
         </div>
         <div class="column">
             <button class="paiement" id="btpay" type="submit" >Pay</button>
@@ -38,7 +41,6 @@
         <thead>
         <h1>My transactions</h1>
         </thead>
-
         <tr>
             <th>Connections</th>
             <th>Desciption</th>
@@ -47,9 +49,13 @@
         <tr th:each="transaction : ${transactionList}" >
             <td th:text="${transaction.getAccount_receiver().getUser().getFirstName()}" > nom </td>
             <td th:text="${transaction.getDescription()}" > descriiption </td>
-            <td th:text="${transaction.getAmount()}" > amount </td>
+            <td th:text="${transaction.getAmount()+'€'}" > amount </td>
         </tr>
     </table>
+    <div style="text-align: center">
+        <a id="pagebutton" th:if="${transactionList.totalPages > 0}" class="list-inline-item p-0" th:each="pageNumber : ${pageNumbers}" th:href="@{/transfer(size=${transactionList.size}, page=${pageNumber})}" th:text=${pageNumber} th:class="${pageNumber==transactionList.number + 1} ? active">|</a>
+    </div>
+
 </div>
 
 </body>

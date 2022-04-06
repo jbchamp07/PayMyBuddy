@@ -33,7 +33,7 @@
 }
 .column {
     float: left;
-    width: 33.33%;
+    width: 25%;
 }
 .columns:after {
     content: "";
@@ -44,6 +44,7 @@ th{
     background-color: limegreen;
     color: white;
     height: 50px;
+    width: 33%;
 }
 td{
     height: 50px;
@@ -53,4 +54,16 @@ table{
     width: 100%;
     font-size: 25px;
     text-align: center;
+}
+#pagebutton{
+    text-align: center;
+    color: dodgerblue;
+}
+#hometransfer{
+    background-color: #f7f7f7;
+    color: dodgerblue;
+}
+#table_id{
+    border: 1px solid;
+    border-color: black;
 }

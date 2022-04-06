@@ -1,6 +1,7 @@
 package com.openclassrooms.PayMyBuddy.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "transaction")
@@ -18,7 +19,7 @@ public class Transaction {
     private String description;
 
     @Column(name="date")
-    private String date;
+    private Date date;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_receiver", nullable = false)
@@ -28,11 +29,11 @@ public class Transaction {
     @JoinColumn(name = "id_giver", nullable = false)
     private Account account_giver;
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

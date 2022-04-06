@@ -1,5 +1,6 @@
 package com.openclassrooms.PayMyBuddy.service;
 
+import com.openclassrooms.PayMyBuddy.model.Account;
 import com.openclassrooms.PayMyBuddy.model.User;
 import com.openclassrooms.PayMyBuddy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +27,7 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public User getById(int friendId) {
+        return userRepository.findById(friendId).get();
+    }
 }

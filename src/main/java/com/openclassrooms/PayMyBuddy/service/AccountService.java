@@ -18,4 +18,11 @@ public class AccountService {
         return allFriends;
     }
 
+    public Account getById(int friendId) {
+        return accountRepository.findById(friendId).get();
+    }
+
+    public void money(Account account) {
+        accountRepository.save(account);
+    }
 }

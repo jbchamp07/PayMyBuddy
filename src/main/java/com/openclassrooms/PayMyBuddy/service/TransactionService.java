@@ -18,9 +18,12 @@ public class TransactionService {
     @Autowired
     private TransactionRepository transactionRepository;
 
-    public List<Transaction> findYourTransactions(int id){
-        return transactionRepository.findYourTransactions(id);
+    public Page<Transaction> findYourTransactions(int id,PageRequest pageRequest){
+        return transactionRepository.findYourTransactions(id,pageRequest);
     }
 
 
+    public void add(Transaction transaction) {
+        transactionRepository.save(transaction);
+    }
 }

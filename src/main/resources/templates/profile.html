@@ -1,15 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../css/profile.css" th:href="@{/css/transfer.css}">
     <title>Title</title>
 </head>
 <body>
 <header>
     <div th:replace="~{/navbar::topbar}"></div>
 </header>
-
-
-
+<div>
+    <h1>Your balance :</h1>
+    <h1 th:text="${balance}"></h1>
+    <h1 th:text="${invalidAmount}"></h1>
+    <h1>Add money</h1>
+    <form method="post" action="addMoney">
+        <input type="number" name="amount">
+        <input type="submit">
+    </form>
+    <h1>Recover money</h1>
+    <form method="post" action="recoverMoney">
+        <input type="number" name="amount">
+        <input type="submit">
+    </form>
+</div>
+<div>
+    <h1>Your informations</h1>
+    <label th:text="${'First Name : ' + userConnected.getFirstName()}"></label>
+    <br/>
+    <label th:text="${'Last Name : ' + userConnected.getLastName()}"></label>
+    <br/>
+    <label th:text="${'Email : ' + userConnected.getEmail()}"></label>
+    <br/>
+    <a href="updateProfile" >Change informations</a>
+</div>
 </body>
 </html>
