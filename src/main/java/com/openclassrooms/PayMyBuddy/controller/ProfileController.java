@@ -1,5 +1,6 @@
 package com.openclassrooms.PayMyBuddy.controller;
 
+import com.openclassrooms.PayMyBuddy.model.Account;
 import com.openclassrooms.PayMyBuddy.model.User;
 import com.openclassrooms.PayMyBuddy.service.AccountService;
 import com.openclassrooms.PayMyBuddy.service.UserService;
@@ -24,20 +25,34 @@ public class ProfileController {
     @GetMapping("/profile")
     public String profile(Principal user, Model model){
         this.user = userService.getUsertByEmail(user.getName()).get();
-        model.addAttribute("balance",this.user.getAccount().getBalance());
+        if(!(this.user.getAccount() == null)){
+            model.addAttribute("balance",this.user.getAccount().getBalance());
+        }
         model.addAttribute("userConnected",this.user);
         return "profile";
     }
     @PostMapping("/addMoney")
     public String addMoney(Principal user,@ModelAttribute("amount")double amount){
         this.user = userService.getUsertByEmail(user.getName()).get();
+        doesAccountExist(this.user);
         this.user.getAccount().setBalance(this.user.getAccount().getBalance() + amount);
         accountService.money(this.user.getAccount());
         return "index";
     }
+
+    private void doesAccountExist(User user) {
+        if(this.user.getAccount() == null){
+            Account account = new Account();
+            account.setBalance(0);
+            account.setUser(this.user);
+            accountService.add(account);
+        }
+    }
+
     @PostMapping("/recoverMoney")
     public String recoverMoney(Principal user,@ModelAttribute("amount")double amount, Model model){
         this.user = userService.getUsertByEmail(user.getName()).get();
+        doesAccountExist(this.user);
         if(amount <= this.user.getAccount().getBalance()){
             this.user.getAccount().setBalance(this.user.getAccount().getBalance() - amount);
             accountService.money(this.user.getAccount());

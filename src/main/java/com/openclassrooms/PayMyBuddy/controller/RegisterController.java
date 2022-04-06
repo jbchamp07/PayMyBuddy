@@ -22,6 +22,6 @@ public class RegisterController {
     @PostMapping("/register")
     public String done(@ModelAttribute("user") User user){
         userService.save(user);
-        return "index";
+        return "login";
     }
 }

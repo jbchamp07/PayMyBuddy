@@ -22,6 +22,10 @@ public class AccountService {
         return accountRepository.findById(friendId).get();
     }
 
+    public void add(Account account){
+        accountRepository.save(account);
+    }
+
     public void money(Account account) {
         accountRepository.save(account);
     }
