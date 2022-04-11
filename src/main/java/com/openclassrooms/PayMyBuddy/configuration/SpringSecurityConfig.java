@@ -41,6 +41,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().loginPage("/login").permitAll()
                 //.loginProcessingUrl("/perform_login")
                 .and()
+                .rememberMe()
+                .key("rem-me-key")
+                .rememberMeParameter("rememberme") // it is name of checkbox at login page
+                .rememberMeCookieName("remembermelogin")
+                .and()
                 .logout();
        http.csrf().disable();
     }

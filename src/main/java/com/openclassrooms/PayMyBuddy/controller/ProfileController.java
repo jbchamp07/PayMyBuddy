@@ -34,13 +34,13 @@ public class ProfileController {
     @PostMapping("/addMoney")
     public String addMoney(Principal user,@ModelAttribute("amount")double amount){
         this.user = userService.getUsertByEmail(user.getName()).get();
-        doesAccountExist(this.user);
+        doesAccountExist();
         this.user.getAccount().setBalance(this.user.getAccount().getBalance() + amount);
         accountService.money(this.user.getAccount());
         return "index";
     }
 
-    private void doesAccountExist(User user) {
+    private void doesAccountExist() {
         if(this.user.getAccount() == null){
             Account account = new Account();
             account.setBalance(0);
@@ -52,7 +52,7 @@ public class ProfileController {
     @PostMapping("/recoverMoney")
     public String recoverMoney(Principal user,@ModelAttribute("amount")double amount, Model model){
         this.user = userService.getUsertByEmail(user.getName()).get();
-        doesAccountExist(this.user);
+        doesAccountExist();
         if(amount <= this.user.getAccount().getBalance()){
             this.user.getAccount().setBalance(this.user.getAccount().getBalance() - amount);
             accountService.money(this.user.getAccount());
