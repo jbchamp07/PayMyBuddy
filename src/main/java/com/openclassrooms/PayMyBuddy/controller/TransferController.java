@@ -69,6 +69,9 @@ public class TransferController {
         if(this.user.getAccount().getBalance() < amount){
             this.user.getAccount().setBalance(this.user.getAccount().getBalance() - amount);
             friendUser.getAccount().setBalance(friendUser.getAccount().getBalance() + amount);
+            //TODO change money value in database
+            accountService.money(this.user.getAccount());
+            accountService.money(friendUser.getAccount());
             Transaction transaction = new Transaction();
             transaction.setAccount_giver(this.user.getAccount());
             transaction.setAccount_receiver(friendUser.getAccount());

@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class LoginControllerTest {
-
+/*
     @Autowired
     private MockMvc mockMvc;
     @Test
@@ -22,6 +22,6 @@ public class LoginControllerTest {
                 .param("username","jb.champetier@gmail.com").param("password","a"))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
-    }
+    }*/
 
 }

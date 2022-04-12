@@ -19,7 +19,7 @@ public class FriendServiceTest {
     @Autowired
     private FriendRepository friendRepository;
     @Autowired
-    private static ConfigDTB configDTB;
+    private ConfigDTB configDTB;
 
     private Friend friend;
 /*
@@ -29,7 +29,7 @@ public class FriendServiceTest {
         configDTB.createAnotherUserAndAccount();
     }
     @AfterAll
-    public static void deleteall(){
+    public static void deleteAll(){
         configDTB.deleteUserAndAccount();
         configDTB.deleteAnotherUserAndAccount();
         configDTB.deleteFriend(friend);

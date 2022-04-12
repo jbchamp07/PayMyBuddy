@@ -18,13 +18,13 @@ public class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Autowired
-    private static ConfigDTB configDTB;
+    private ConfigDTB configDTB;
 
     private User user;
-
+/*
     @BeforeAll
     public static void createUser(){
-        /*User user = new User();
+        User user = new User();
         user.setFirstName("firstNameTest");
         user.setLastName("lastNameTest");
         user.setPassword("passwordTest");
@@ -33,22 +33,22 @@ public class UserRepositoryTest {
         account.setUser(user);
         account.setBalance(0);
         user.setAccount(account);
-        userRepository.save(user);*/
+        userRepository.save(user);
         configDTB.createUserAndAccount();
     }
     @AfterAll
     public static void deleteUser(){
-        //user = userRepository.findByEmail("emailTest").get();
-        /*userRepository.delete(user);*/
+        user = userRepository.findByEmail("emailTest").get();
+        userRepository.delete(user);
         configDTB.deleteUserAndAccount();
-    }
+    }*/
 
     @Test
     public void findByEmailTest(){
-        //createUser();
+        configDTB.createUserAndAccount();
         user = userRepository.findByEmail("emailTest").get();
-        //deleteUser();
         assertEquals("firstNameTest",user.getFirstName());
+        configDTB.deleteUserAndAccount();
     }
 
 }

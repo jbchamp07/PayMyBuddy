@@ -2,6 +2,7 @@ package com.openclassrooms.PayMyBuddy;
 
 import com.openclassrooms.PayMyBuddy.model.Account;
 import com.openclassrooms.PayMyBuddy.model.Friend;
+import com.openclassrooms.PayMyBuddy.model.Transaction;
 import com.openclassrooms.PayMyBuddy.model.User;
 import com.openclassrooms.PayMyBuddy.repository.AccountRepository;
 import com.openclassrooms.PayMyBuddy.repository.FriendRepository;
@@ -9,6 +10,9 @@ import com.openclassrooms.PayMyBuddy.repository.TransactionRepository;
 import com.openclassrooms.PayMyBuddy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.sql.Date;
+import java.time.Instant;
 
 @Service
 public class ConfigDTB {
@@ -26,6 +30,8 @@ public class ConfigDTB {
     private Account account1;
     private User user2;
     private Account account2;
+    private Friend friend;
+    private Transaction transaction;
 
     public void createUserAndAccount(){
         user1 = new User();
@@ -35,7 +41,7 @@ public class ConfigDTB {
         user1.setEmail("emailTest");
         account1 = new Account();
         account1.setUser(user1);
-        account1.setBalance(0);
+        account1.setBalance(100);
         user1.setAccount(account1);
         userRepository.save(user1);
     }
@@ -47,19 +53,41 @@ public class ConfigDTB {
         user2.setEmail("emailTest2");
         account2 = new Account();
         account2.setUser(user2);
-        account2.setBalance(0);
+        account2.setBalance(200);
         user2.setAccount(account2);
         userRepository.save(user2);
     }
     public void deleteFriend(Friend friend){
         friendRepository.delete(friend);
     }
-
+    public void deleteFriend(){
+        friendRepository.delete(friend);
+    }
+    public void addTransaction(){
+        transaction = new Transaction();
+        transaction.setAmount(50);
+        transaction.setDescription("descriptionTest");
+        transaction.setDate(Date.from(Instant.now()));
+        transaction.setAccount_giver(account1);
+        transaction.setAccount_receiver(account2);
+        transactionRepository.save(transaction);
+        account1.setBalance(account1.getBalance() - 50);
+        account2.setBalance(account2.getBalance() + 50);
+    }
+    public void deleteTransaction(){
+        transactionRepository.delete(transaction);
+    }
     public void deleteUserAndAccount(){
         userRepository.delete(user1);
     }
     public void deleteAnotherUserAndAccount(){
         userRepository.delete(user2);
+    }
+    public void addFriend(){
+        friend = new Friend();
+        friend.setAccount_giver(account1);
+        friend.setAccount_receiver(account2);
+        friendRepository.save(friend);
     }
 
     public User getUser1() {
@@ -92,5 +120,13 @@ public class ConfigDTB {
 
     public void setAccount2(Account account2) {
         this.account2 = account2;
+    }
+
+    public Transaction getTransaction() {
+        return transaction;
+    }
+
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
     }
 }
