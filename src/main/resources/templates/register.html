@@ -3,14 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
 </head>
 <body>
-    <form method="post" action="register" modelAttribute="user">
-            <input type="input" name="firstName"  id="firstName" path="firstname" placeholder="First Name">
-            <input type="input" name="lastName"  id="lastName" path="lastname" placeholder="Last Name">
-            <input type="email"  name="email" placeholder="Email" >
-            <input type="password" name="password" id="inputPassword" placeholder="Password">
-            <button  type="submit">Register</button>
+
+<div class="container">
+    <form class="form-signin" method="post" action="register" modelAttribute="user">
+        <h2 class="form-signin-heading" style="background: linear-gradient(to right,forestgreen,lawngreen);color: white;border-radius: 10px;font-size: 35px;text-align: center">Pay My Buddy</h2>
+        <p>
+            <label for="firstName" class="sr-only">FirstName</label>
+            <input type="input" name="firstName"  id="firstName" path="firstname" class="form-control" placeholder="First Name">
+        </p>
+        <p>
+            <label for="lastName" class="sr-only">LastName</label>
+            <input type="input" name="lastName"  id="lastName" path="lastname" class="form-control" placeholder="Last Name">
+        </p>
+        <p>
+            <label for="email" class="sr-only">LastName</label>
+            <input type="email" id="email"  name="email" placeholder="Email" class="form-control" >
+        </p>
+        <p>
+            <label for="inputPassword" class="sr-only">LastName</label>
+            <input type="password" name="password" id="inputPassword" placeholder="Password" class="form-control">
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        <a href="login">Login</a>
     </form>
+</div>
+
+
 </body>
 </html>

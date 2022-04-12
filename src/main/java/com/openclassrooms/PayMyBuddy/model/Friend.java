@@ -37,4 +37,12 @@ public class Friend {
     public void setAccount_giver(Account account_giver) {
         this.account_giver = account_giver;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
