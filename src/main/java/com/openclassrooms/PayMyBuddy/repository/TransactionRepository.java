@@ -17,7 +17,7 @@ import java.util.List;
 public interface TransactionRepository extends JpaRepository<Transaction, Integer> {
 
     //TODO revoir toute les transaction RECU
-    @Query(value = "select * from transaction where id_giver = :id", nativeQuery = true)
+    @Query(value = "select * from transaction where id_giver = :id OR id_receiver = :id", nativeQuery = true)
     Page<Transaction> findYourTransactions(@Param("id")int id, Pageable pageable);
 
 }

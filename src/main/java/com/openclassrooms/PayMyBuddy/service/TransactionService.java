@@ -19,7 +19,17 @@ public class TransactionService {
     private TransactionRepository transactionRepository;
 
     public Page<Transaction> findYourTransactions(int id,PageRequest pageRequest){
-        return transactionRepository.findYourTransactions(id,pageRequest);
+        //return transactionRepository.findYourTransactions(id,pageRequest);
+        //TODO if id=id
+        Page<Transaction> transactionPage = transactionRepository.findYourTransactions(id,pageRequest);
+        double amount;
+        for (Transaction transaction: transactionPage) {
+            if(transaction.getAccount_giver().getId() == id){
+                amount = transaction.getAmount();
+                transaction.setAmount(-amount);
+            }
+        }
+        return transactionPage;
     }
 
 

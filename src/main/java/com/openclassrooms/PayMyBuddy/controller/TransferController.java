@@ -57,8 +57,8 @@ public class TransferController {
                     .collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
         }
-        model.addAttribute("transactionList", transactionService.findYourTransactions(this.user.getAccount().getId(), PageRequest.of(currentPage - 1, pageSize, sort)));
-
+        //model.addAttribute("transactionList", transactionService.findYourTransactions(this.user.getAccount().getId(), PageRequest.of(currentPage - 1, pageSize, sort)));
+        model.addAttribute("transactionList", transactionList);
         return "transfer";
     }
 

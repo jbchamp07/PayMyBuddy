@@ -7,6 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 @SpringBootTest
 @AutoConfigureMockMvc
 public class RegisterControllerTest {
@@ -16,7 +18,8 @@ public class RegisterControllerTest {
 
     @Test
     public void returnRegisterTest() throws Exception {
-        //mockMvc.perform(MockMvcRequestBuilders.get("/")).andExpect()
+        mockMvc.perform(MockMvcRequestBuilders.get("/register"))
+                .andExpect(status().isOk());
     }
 
 }

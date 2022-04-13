@@ -21,33 +21,33 @@ public class FriendServiceTest {
     @Autowired
     private ConfigDTB configDTB;
 
-    private Friend friend;
-/*
+    private static Friend friend;
+
     @BeforeAll
-    public static void init(){
+    public static void init(@Autowired ConfigDTB configDTB){
         configDTB.createUserAndAccount();
         configDTB.createAnotherUserAndAccount();
     }
     @AfterAll
-    public static void deleteAll(){
+    public static void deleteAll(@Autowired ConfigDTB configDTB){
         configDTB.deleteUserAndAccount();
         configDTB.deleteAnotherUserAndAccount();
         configDTB.deleteFriend(friend);
-    }*/
+    }
 
     @Test
     public void addTest(){
-        configDTB.createUserAndAccount();
-        configDTB.createAnotherUserAndAccount();
+        /*configDTB.createUserAndAccount();
+        configDTB.createAnotherUserAndAccount();*/
         friend = new Friend();
         friend.setAccount_giver(configDTB.getAccount1());
         friend.setAccount_receiver(configDTB.getAccount2());
         friendService.add(friend);
         assertEquals(friend.getAccount_giver().getId(),friendRepository.findById(friend.getId()).get().getAccount_giver().getId());
         assertEquals(friend.getAccount_receiver().getId(),friendRepository.findById(friend.getId()).get().getAccount_receiver().getId());
-        configDTB.deleteUserAndAccount();
+        /*configDTB.deleteUserAndAccount();
         configDTB.deleteAnotherUserAndAccount();
-        configDTB.deleteFriend(friend);
+        configDTB.deleteFriend(friend);*/
     }
 
 }
