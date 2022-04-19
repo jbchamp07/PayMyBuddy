@@ -8,6 +8,7 @@ public class HomeController {
 
     @GetMapping("/index")
     public String home(){
+        //TODO pareil que tranfer
         return "transfer";
     }
 

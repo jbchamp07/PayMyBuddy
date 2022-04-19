@@ -67,9 +67,14 @@ public class TransferController {
         this.user = userService.getUsertByEmail(user.getName()).get();
         User friendUser = userService.getById(friendId);
         if(this.user.getAccount().getBalance() < amount){
+
+            //TODO 5% a l'application
+            User applicationUser = userService.getUsertByEmail("PayMyBuddy@gmail.com").get();
+            applicationUser.getAccount().setBalance(applicationUser.getAccount().getBalance() + (amount * 0.05));
+            amount = amount * 0.95;
+
             this.user.getAccount().setBalance(this.user.getAccount().getBalance() - amount);
             friendUser.getAccount().setBalance(friendUser.getAccount().getBalance() + amount);
-            //TODO change money value in database
             accountService.money(this.user.getAccount());
             accountService.money(friendUser.getAccount());
             Transaction transaction = new Transaction();
