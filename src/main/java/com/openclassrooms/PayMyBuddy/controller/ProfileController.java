@@ -46,6 +46,8 @@ public class ProfileController {
             account.setBalance(0);
             account.setUser(this.user);
             accountService.add(account);
+            this.user.setAccount(account);
+            userService.save(user);
         }
     }
 

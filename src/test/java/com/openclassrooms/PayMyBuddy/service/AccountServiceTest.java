@@ -68,7 +68,7 @@ public class AccountServiceTest {
         assertEquals(150,accountService.getById(configDTB.getAccount1().getId()).getBalance());
         configDTB.deleteUserAndAccount();
     }
-    //TODO
+
     @Test
     public void getAllFriendsTest(){
         configDTB.createUserAndAccount();

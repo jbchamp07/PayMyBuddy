@@ -26,7 +26,10 @@
             </select>
         </div>
         <div class="column">
-            <input class="paiement" type="number" name="amount" placeholder="Amount">€
+            <input onkeyup="calculatRealmAmount()" class="paiement" type="number" id="amount" name="amount" placeholder="Amount">€
+            <span>Montant réel :
+            <span id="realAmount"></span>
+            </span>
         </div>
         <div class="column">
             <input class="paiement" type="text" placeholder="Desciption" name="description">
@@ -57,6 +60,12 @@
     </div>
 
 </div>
-
+<script type="application/javascript">
+    function calculatRealmAmount() {
+        var realAmount = parseFloat(document.getElementById("amount").value) * 0.95
+        document.getElementById("realAmount").innerHTML= realAmount
+        console.log(document.getElementById("amount").value)
+    }
+</script>
 </body>
 </html>
