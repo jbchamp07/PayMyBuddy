@@ -41,6 +41,9 @@ public class TransferController {
     @GetMapping("/transfer")
     public String transfer(Principal user, Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
         this.user = userService.getUsertByEmail(user.getName()).get();
+        if(this.user.getAccount() == null){
+            return "index";
+        }
         model.addAttribute("user",this.user);
         Iterable<Account> friendsaccount = accountService.getAllFriends(this.user.getId());
         model.addAttribute("friendsaccounts",friendsaccount);
