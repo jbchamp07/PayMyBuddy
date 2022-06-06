@@ -66,7 +66,7 @@ public class TransferController {
     public String postPay(Principal user,@ModelAttribute("friendid")int friendId,@ModelAttribute("amount")double amount,@ModelAttribute("description")String description){
         this.user = userService.getUsertByEmail(user.getName()).get();
         User friendUser = userService.getById(friendId);
-        if(this.user.getAccount().getBalance() < amount){
+        if(this.user.getAccount().getBalance() > amount){
 
             //TODO 5% a l'application
             User applicationUser = userService.getUsertByEmail("PayMyBuddy@gmail.com").get();

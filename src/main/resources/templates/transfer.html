@@ -53,6 +53,7 @@
             <td th:text="${transaction.getAccount_receiver().getUser().getFirstName()}" > nom </td>
             <td th:text="${transaction.getDescription()}" > descriiption </td>
             <td th:text="${transaction.getAmount()+'€'}" > amount </td>
+            <!--<td th:text="${transaction.getAmount()+'€ (' + ((transaction.getAmount() / 95 )* 100) + ')'}"> amount </td>-->
         </tr>
     </table>
     <div style="text-align: center">
