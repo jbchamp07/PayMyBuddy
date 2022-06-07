@@ -42,12 +42,9 @@ public class ProfileController {
 
     private void doesAccountExist() {
         if(this.user.getAccount() == null){
-            Account account = new Account();
-            account.setBalance(0);
-            account.setUser(this.user);
-            accountService.add(account);
-            this.user.setAccount(account);
-            userService.save(user);
+
+            accountService.addAccount(this.user);
+
         }
     }
 

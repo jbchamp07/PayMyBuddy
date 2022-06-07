@@ -11,6 +11,8 @@ public class AccountService {
 
     @Autowired
     private AccountRepository accountRepository;
+    @Autowired
+    private UserService userService;
 
     public Iterable<Account> getAllFriends(int id) {
         int[] accountsId = accountRepository.friendsId(id);
@@ -28,5 +30,16 @@ public class AccountService {
 
     public void money(Account account) {
         accountRepository.save(account);
+    }
+
+    public void addAccount(User user) {
+
+        Account account = new Account();
+        account.setBalance(0);
+        account.setUser(user);
+        add(account);
+        user.setAccount(account);
+        userService.save(user);
+
     }
 }
