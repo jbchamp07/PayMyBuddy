@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.time.Instant;
@@ -44,6 +45,7 @@ public class UserService {
         return userRepository.findById(friendId).get();
     }
 
+    @Transactional
     public void doTransaction(String userEmail, int friendId, double amount,String description) {
 
 
