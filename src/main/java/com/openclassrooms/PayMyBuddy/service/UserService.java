@@ -27,8 +27,7 @@ public class UserService {
     private AccountService accountService;
     @Autowired
     private TransactionService transactionService;
-    @Autowired
-    private UserService userService;
+
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     private final CountDownLatch countDownLatch  = new CountDownLatch(1);
@@ -49,9 +48,9 @@ public class UserService {
     public void doTransaction(String userEmail, int friendId, double amount,String description) {
 
 
-        User user = userService.getUsertByEmail(userEmail).get();
-        User friendUser = userService.getById(friendId);
-        User applicationUser = userService.getUsertByEmail("PayMyBuddy@gmail.com").get();
+        User user = getUsertByEmail(userEmail).get();
+        User friendUser = getById(friendId);
+        User applicationUser = getUsertByEmail("PayMyBuddy@gmail.com").get();
 
 
         applicationUser.getAccount().setBalance(applicationUser.getAccount().getBalance() + (amount * 0.05));
