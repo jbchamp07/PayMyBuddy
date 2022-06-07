@@ -42,7 +42,7 @@ public class FriendServiceTest {
         friend = new Friend();
         friend.setAccount_giver(configDTB.getAccount1());
         friend.setAccount_receiver(configDTB.getAccount2());
-        friendService.add(friend);
+        //friendService.add(friend);
         assertEquals(friend.getAccount_giver().getId(),friendRepository.findById(friend.getId()).get().getAccount_giver().getId());
         assertEquals(friend.getAccount_receiver().getId(),friendRepository.findById(friend.getId()).get().getAccount_receiver().getId());
         /*configDTB.deleteUserAndAccount();

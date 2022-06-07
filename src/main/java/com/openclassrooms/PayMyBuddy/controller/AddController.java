@@ -30,14 +30,10 @@ public class AddController {
     @PostMapping("/add")
     public String addFriend(Principal user , @ModelAttribute("email")String email, Model model){
         this.user = userService.getUsertByEmail(user.getName()).get();
-        //TODO traiter erreur si email n'existe pas
         if(userService.getUsertByEmail(email).get() == null){
             model.addAttribute("done","This email doesn't exist");
         }else{
-            Friend friend = new Friend();
-            friend.setAccount_giver(this.user.getAccount());
-            friend.setAccount_receiver(userService.getUsertByEmail(email).get().getAccount());
-            friendService.add(friend);
+            friendService.add(this.user.getAccount(),userService.getUsertByEmail(email).get().getAccount());
             model.addAttribute("done","Friend added");
         }
         return "add";

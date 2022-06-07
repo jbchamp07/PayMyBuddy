@@ -39,7 +39,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
-                //.loginProcessingUrl("/perform_login")
                 .and()
                 .rememberMe()
                 .key("rem-me-key")
