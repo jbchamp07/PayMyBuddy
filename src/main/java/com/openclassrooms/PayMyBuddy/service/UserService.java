@@ -65,7 +65,6 @@ public class UserService {
         transaction.setDate(Date.from(Instant.now()));
         transaction.setDescription(description);
 
-        //my first thread
         double finalAmount = amount;
         Thread t1 = new Thread(){
             @SneakyThrows
@@ -75,7 +74,6 @@ public class UserService {
                 user.getAccount().setBalance(user.getAccount().getBalance() - finalAmount);
             }
         };
-        //my second thread
         double finalAmount1 = amount;
         Thread t2 = new Thread(){
             @SneakyThrows
