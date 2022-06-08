@@ -4,4 +4,4 @@
 
 ## physical data model
 
-<img src="https://github.com/jbchamp07/PayMyBuddy/blob/Release/src/main/resources/static/img/Capture.PNG?raw=true" alt="pdm">
+<img src="https://github.com/jbchamp07/PayMyBuddy/blob/Release/src/main/resources/static/img/Nouvelle%20capture%20bdd.PNG?raw=true" alt="pdm">
